@@ -5,7 +5,7 @@ An exploded view of a generic 2026-regulations F1 car in two stages, a 2022 vs 2
 
 **Live: [f1.badcodes.dev](https://f1.badcodes.dev)**
 
-<!-- demo-video -->
+https://github.com/user-attachments/assets/a6874386-7794-42de-9cfb-ec029a3a70a0
 
 The car is a scanned Sketchfab model pulled apart along named parts. The first stage separates the bodywork; the second opens it and shows a power unit built in code from the 2026 regulations. Pick any part, in 3D or from the list, to read what it does, its numbers and where they come from. The regulation figures are sourced from the FIA technical regulations and explainers, and the lap and downforce scores are a small game model, not data from any real car or team.
 
