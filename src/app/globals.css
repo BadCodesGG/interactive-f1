@@ -1,0 +1,309 @@
+@import "tailwindcss";
+
+/*
+ * Car 26: a dark studio and one accent. The accent
+ * is the livery's: these defaults are Ghost's (the default livery), and the blocks after the light
+ * theme give each of the eight liveries its own, selected by `data-livery` on <html> (set before first
+ * paint by the inline script in layout.tsx, and by the picker). Every colour pair is held to its
+ * contrast floor by src/app/accent.test.ts. The older semantic names are kept and point at these
+ * values, so every component takes the look without a rename.
+ */
+:root {
+  --ground: #07080a;
+  --floor: #111317;
+  --hairline: #2a2d34;
+
+  --bg: var(--ground);
+  --surface: #16181d;
+  --surface-hover: #1d2026;
+  --border: var(--hairline);
+  /* The border of the part search input and the theme toggle (the engine reads it, falling back to --border). Measured: 3.62:1 on --surface #16181d and 4.08:1 on --bg #07080a; --hairline is 1.3:1 on the surface, too faint for a control's edge. */
+  --field-border: #6b717c;
+  --ink: #e9ebef;
+  --ink-muted: #9aa0ab;
+  --ink-secondary: var(--ink-muted);
+  --ink-tertiary: var(--ink-muted);
+  --accent: #b8bec8;
+  --accent-hover: #cdd2d9;
+  --accent-strong: #6e7278;
+  --on-accent: #07080a;
+  --surface-inverted: #e9ebef;
+  --ink-inverted: var(--on-accent);
+  --ink-inverted-secondary: #3a4152;
+  --positive: #6fd08c;
+  --caution: #f5c542;
+  --error: #e5484d;
+
+  /* The pool of floor light behind the canvas, under the car. */
+  --stage-pool: radial-gradient(ellipse 55% 38% at 50% 70%, var(--floor), transparent 75%);
+}
+
+/*
+ * The light theme: a bright white-cyc photo studio, as a daylight launch set. Same custom properties,
+ * redefined; every text and surface pairing is at least 4.5:1 and every border at least 3:1 against
+ * the surfaces it sits on. The accent is each livery's deep shade here (also the 3D selection outline),
+ * because a livery's bright colour cannot carry text on a white ground.
+ */
+[data-theme="light"] {
+  --ground: #e1e5ea;
+  --floor: #d3d8df;
+  --hairline: #78808f;
+
+  --bg: var(--ground);
+  --surface: #fbfbfc;
+  --surface-hover: #f0f2f5;
+  --border: var(--hairline);
+  /* Measured: 4.36:1 on --surface #fbfbfc and 3.56:1 on --bg #e1e5ea. */
+  --field-border: #6f7786;
+  --ink: #0c1017;
+  --ink-muted: #48505e;
+  --ink-secondary: var(--ink-muted);
+  --ink-tertiary: var(--ink-muted);
+  --accent: #4a505a;
+  --accent-hover: #383c44;
+  --accent-strong: #383c44;
+  --on-accent: #ffffff;
+  --surface-inverted: #0c1017;
+  --ink-inverted: var(--on-accent);
+  --ink-inverted-secondary: #c9ced6;
+  --positive: #16693a;
+  --caution: #7a4f00;
+  --error: #b42328;
+
+  /* Fades out before the stage's bottom edge, which a pale ground would otherwise show. */
+  --stage-pool: radial-gradient(ellipse 58% 24% at 50% 62%, var(--floor), transparent 100%);
+}
+
+/*
+ * The accent per livery: dark over the dark theme (and before the theme script has run), light over
+ * the light one. The compound selectors out-rank the theme blocks above. The hover and strong shades
+ * are derived from the accent by accentShades() in src/models/f1/livery-accent.ts; the test checks it.
+ */
+:root[data-livery="powder-blue"]:not([data-theme="light"]) {
+  --accent: #f28a2e;
+  --accent-hover: #f6ad6d;
+  --accent-strong: #91531c;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="powder-blue"] {
+  --accent: #9c4a0a;
+  --accent-hover: #753808;
+  --accent-strong: #753808;
+  --on-accent: #ffffff;
+}
+
+:root[data-livery="white-stripes"]:not([data-theme="light"]) {
+  --accent: #5aa9e6;
+  --accent-hover: #8cc3ee;
+  --accent-strong: #36658a;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="white-stripes"] {
+  --accent: #1b4f8a;
+  --accent-hover: #143b68;
+  --accent-strong: #143b68;
+  --on-accent: #ffffff;
+}
+
+:root[data-livery="black-gold"]:not([data-theme="light"]) {
+  --accent: #d4af37;
+  --accent-hover: #e1c773;
+  --accent-strong: #7f6921;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="black-gold"] {
+  --accent: #7a5c10;
+  --accent-hover: #5c450c;
+  --accent-strong: #5c450c;
+  --on-accent: #ffffff;
+}
+
+:root[data-livery="orange-blue"]:not([data-theme="light"]) {
+  --accent: #ff8000;
+  --accent-hover: #ffa64d;
+  --accent-strong: #994d00;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="orange-blue"] {
+  --accent: #a34d00;
+  --accent-hover: #7a3a00;
+  --accent-strong: #7a3a00;
+  --on-accent: #ffffff;
+}
+
+:root[data-livery="silver"]:not([data-theme="light"]) {
+  --accent: #00d2be;
+  --accent-hover: #4de0d2;
+  --accent-strong: #007e72;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="silver"] {
+  --accent: #006b61;
+  --accent-hover: #005049;
+  --accent-strong: #005049;
+  --on-accent: #ffffff;
+}
+
+:root[data-livery="racing-red"]:not([data-theme="light"]) {
+  --accent: #ff3b3b;
+  --accent-hover: #ff7676;
+  --accent-strong: #992323;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="racing-red"] {
+  --accent: #b3141c;
+  --accent-hover: #860f15;
+  --accent-strong: #860f15;
+  --on-accent: #ffffff;
+}
+
+:root[data-livery="ghost"]:not([data-theme="light"]) {
+  --accent: #b8bec8;
+  --accent-hover: #cdd2d9;
+  --accent-strong: #6e7278;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="ghost"] {
+  --accent: #4a505a;
+  --accent-hover: #383c44;
+  --accent-strong: #383c44;
+  --on-accent: #ffffff;
+}
+
+:root[data-livery="badcodes"]:not([data-theme="light"]) {
+  --accent: #ffb000;
+  --accent-hover: #ffc84d;
+  --accent-strong: #996a00;
+  --on-accent: #07080a;
+}
+
+:root[data-theme="light"][data-livery="badcodes"] {
+  --accent: #b5360f;
+  --accent-hover: #88290b;
+  --accent-strong: #88290b;
+  --on-accent: #ffffff;
+}
+
+/* A phone held sideways: the docks along the bottom (lap-panel.tsx, pit-stop-panel.tsx) compact themselves under `short:`. */
+@custom-variant short (@media (max-height: 480px));
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  /* The edge of a control (a toggle box, a livery tile, a form field): 3:1 or better, which the hairline --border (a card's edge) is not in the dark theme. */
+  --color-field-border: var(--field-border);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-tertiary: var(--ink-tertiary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-surface-inverted: var(--surface-inverted);
+  --color-ink-inverted: var(--ink-inverted);
+  --color-ink-inverted-secondary: var(--ink-inverted-secondary);
+  --color-positive: var(--positive);
+  --color-caution: var(--caution);
+  --color-error: var(--error);
+  --color-floor: var(--floor);
+  --font-display: var(--font-michroma), "Eurostile", "Arial Black", sans-serif;
+  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, Menlo, monospace;
+  /* Machined edges: panels and the stage square, buttons just off square. */
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  /* Room under the credits for the dock that is open (lap-panel.tsx, pit-stop-panel.tsx publish its height), so the footer can be scrolled clear of it. */
+  padding-bottom: max(var(--lap-dock, 0px), var(--pit-dock, 0px));
+  font-family: var(--font-sans);
+  /* Michroma ships one weight (400). Without this a font-bold on it is drawn by smearing the glyphs, which the real faces (Archivo 400 to 700, JetBrains Mono 400 and 700) never need. */
+  font-synthesis-weight: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-tertiary);
+}
+
+/* The explode slider: a native range, tinted to the accent. */
+input[type="range"][data-explode-range] {
+  accent-color: var(--accent);
+}
+
+/*
+ * Touch targets on a phone: 36 px or more. These controls come from the synced engine
+ * (src/engine/explode/ui/), which is not edited here, so they are reached by their data attributes.
+ */
+@media (max-width: 767px) {
+  input[type="range"] {
+    height: 2.25rem;
+  }
+
+  [data-explode-controls] label,
+  [data-xray-control] label {
+    display: inline-flex;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    align-items: center;
+  }
+
+  [data-part-filter] button,
+  [data-found-counter] button {
+    min-height: 2.25rem;
+    min-width: 3rem;
+  }
+}
+
+/*
+ * Native controls and text links draw the browser's thin auto outline flush against them. Give them the
+ * same 2px accent ring, 2px clear of the control, that the buttons and tiles wear.
+ */
+:is(a, input[type="range"], input[type="checkbox"]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

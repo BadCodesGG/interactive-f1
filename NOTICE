@@ -1,0 +1,17 @@
+This project's code is licensed under the MIT licence in LICENSE. The
+following are not covered by it.
+
+The 3D models in public/models are not covered by the MIT licence,
+and neither are the files baked from them. public/models/f1-2026.*.glb
+is derived from "F1 2026 concept" by Qvist_Designs, split into parts
+following filan214's APEX project; public/models/f226.*.glb is derived from
+"Formula F226" and public/models/f222.*.glb from "Formula F222 Ultimate",
+both by CarlosCG31. All three are licensed CC BY 4.0 and were modified for
+this site.  public/models/f1-sdf.*.bin, the signed distance field baked
+from the f1-2026 model, is covered by the same licence. See README.md and
+src/data/credits.ts for the titles, links and notes on what was changed.
+
+The BadCodes name, logo and wordmark, including the textures in
+public/models/bc-*.png used by the BadCodes livery, are not licensed under
+the MIT licence. A fork keeps the copyright notice in LICENSE but should
+not present itself as BadCodes or use the logo as its own brand.

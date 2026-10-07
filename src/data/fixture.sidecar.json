@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "model": "/models/fixture.476b6be4.glb",
+  "assembly": {
+    "centre": [
+      0,
+      0,
+      0
+    ],
+    "radius": null,
+    "axis": null
+  },
+  "groups": {
+    "structure": {
+      "label": "Structure",
+      "stage": 0
+    },
+    "mechanism": {
+      "label": "Mechanism",
+      "stage": 1,
+      "explode": [
+        0,
+        0,
+        0.6
+      ]
+    }
+  },
+  "parts": {
+    "base_plate": {
+      "label": "Base plate",
+      "group": "structure",
+      "copy": "fixture.base_plate"
+    },
+    "column_left": {
+      "label": "Left column",
+      "group": "structure",
+      "copy": "fixture.column_left"
+    },
+    "column_right": {
+      "label": "Right column",
+      "group": "structure",
+      "copy": "fixture.column_right"
+    },
+    "cover_top": {
+      "label": "Top cover",
+      "group": "structure",
+      "explode": [
+        0,
+        0.9,
+        0
+      ],
+      "copy": "fixture.cover_top"
+    },
+    "cover_front": {
+      "label": "Front cover",
+      "group": "structure",
+      "copy": "fixture.cover_front"
+    },
+    "head": {
+      "label": "Head",
+      "group": "mechanism",
+      "copy": "fixture.head",
+      "view": {
+        "position": [
+          2.2,
+          3.4,
+          3.2
+        ],
+        "target": [
+          0,
+          2.2,
+          0
+        ]
+      }
+    },
+    "gear_a": {
+      "label": "Drive gear",
+      "group": "mechanism",
+      "order": 0.2,
+      "copy": "fixture.gear_a"
+    },
+    "gear_b": {
+      "label": "Driven gear",
+      "group": "mechanism",
+      "order": 0.6,
+      "copy": "fixture.gear_b"
+    },
+    "core": {
+      "label": "Core",
+      "group": "mechanism",
+      "copy": "fixture.core"
+    }
+  }
+}

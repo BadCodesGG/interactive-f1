@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "model": "/models/f222.d2c1885a.glb",
+  "assembly": {
+    "centre": [
+      -0.25,
+      0.45,
+      0
+    ],
+    "radius": 2.9,
+    "axis": null,
+    "camera": {
+      "azimuth": -0.95,
+      "polar": 1.25
+    }
+  },
+  "groups": {
+    "aero": {
+      "label": "Aerodynamics",
+      "stage": 0
+    },
+    "bodywork": {
+      "label": "Bodywork",
+      "stage": 0
+    },
+    "safety": {
+      "label": "Safety",
+      "stage": 0
+    },
+    "suspension": {
+      "label": "Suspension",
+      "stage": 0
+    },
+    "wheels": {
+      "label": "Wheels and tyres",
+      "stage": 0
+    },
+    "exhaust": {
+      "label": "Exhaust",
+      "stage": 0
+    }
+  },
+  "parts": {
+    "front-wing": {
+      "label": "Front wing",
+      "group": "aero",
+      "explode": [
+        -0.9,
+        0,
+        0
+      ],
+      "order": 0.3,
+      "copy": "front-wing"
+    },
+    "rear-wing": {
+      "label": "Rear wing and DRS flap",
+      "group": "aero",
+      "explode": [
+        1.2,
+        0.2,
+        0
+      ],
+      "order": 0.3,
+      "copy": "rear-wing"
+    },
+    "floor": {
+      "label": "Floor and diffuser",
+      "group": "aero",
+      "explode": [
+        0,
+        -0.92,
+        0
+      ],
+      "order": 0.7,
+      "copy": "floor"
+    },
+    "bodywork": {
+      "label": "Bodywork and halo",
+      "group": "bodywork",
+      "explode": [
+        0,
+        1.4,
+        0
+      ],
+      "order": 0,
+      "copy": "bodywork"
+    },
+    "cockpit": {
+      "label": "Cockpit: seat and steering wheel",
+      "group": "bodywork",
+      "explode": [
+        -0.6,
+        0.6,
+        0
+      ],
+      "order": 0.6,
+      "copy": "cockpit"
+    },
+    "mirrors": {
+      "label": "Mirrors",
+      "group": "bodywork",
+      "explode": [
+        0,
+        1.95,
+        0
+      ],
+      "order": 0.1,
+      "copy": "mirrors"
+    },
+    "cameras": {
+      "label": "Onboard cameras",
+      "group": "bodywork",
+      "explode": [
+        0,
+        1.75,
+        0
+      ],
+      "order": 0.1,
+      "copy": "cameras"
+    },
+    "front-suspension": {
+      "label": "Front suspension",
+      "group": "suspension",
+      "explode": [
+        -0.5,
+        0,
+        0
+      ],
+      "order": 0.5,
+      "copy": "front-suspension"
+    },
+    "rear-suspension": {
+      "label": "Rear suspension",
+      "group": "suspension",
+      "explode": [
+        0.5,
+        0,
+        0
+      ],
+      "order": 0.5,
+      "copy": "rear-suspension"
+    },
+    "front-left-wheel": {
+      "label": "Front left wheel",
+      "group": "wheels",
+      "explode": [
+        0,
+        0,
+        1
+      ],
+      "order": 0.8,
+      "copy": "front-left-wheel"
+    },
+    "front-right-wheel": {
+      "label": "Front right wheel",
+      "group": "wheels",
+      "explode": [
+        0,
+        0,
+        -1
+      ],
+      "order": 0.8,
+      "copy": "front-right-wheel"
+    },
+    "rear-left-wheel": {
+      "label": "Rear left wheel",
+      "group": "wheels",
+      "explode": [
+        0,
+        0,
+        1
+      ],
+      "order": 0.8,
+      "copy": "rear-left-wheel"
+    },
+    "rear-right-wheel": {
+      "label": "Rear right wheel",
+      "group": "wheels",
+      "explode": [
+        0,
+        0,
+        -1
+      ],
+      "order": 0.8,
+      "copy": "rear-right-wheel"
+    },
+    "rain-light": {
+      "label": "Rain light",
+      "group": "safety",
+      "explode": [
+        0.3,
+        0,
+        0
+      ],
+      "order": 0.8,
+      "copy": "rain-light"
+    },
+    "exhaust": {
+      "label": "Exhaust",
+      "group": "exhaust",
+      "explode": [
+        0.4,
+        -0.45,
+        0
+      ],
+      "order": 0.9,
+      "copy": "exhaust"
+    }
+  },
+  "xray": [
+    "bodywork"
+  ]
+}
