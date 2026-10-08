@@ -40,35 +40,38 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: liveryScript() }} />
       </head>
       <body className="flex min-h-full flex-col">
-        <div className="mx-auto flex w-full max-w-6xl justify-end px-6 pt-4">
-          <ThemeToggle />
-        </div>
-        <div className="flex-1">{children}</div>
-        <footer className="border-t border-border py-6 text-sm text-ink-tertiary">
-          <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 md:flex-row md:items-center md:justify-between">
-            <p>
-              Built by{" "}
-              <a href="https://badcodes.dev" className="text-ink-secondary underline-offset-4 hover:text-accent hover:underline">
-                badcodes.dev
-              </a>
-            </p>
-            <ul aria-label="Credits" data-credits className="flex flex-col gap-1 md:items-end md:text-right">
-              {[credits.showroom, credits.showroom2022, credits.model, credits.partSplit].map((c) => (
-                <li key={c.sourceUrl}>
-                  <a href={c.sourceUrl} className="underline-offset-4 hover:text-accent hover:underline" rel="noreferrer">
-                    &ldquo;{c.title}&rdquo; by {c.author}
-                  </a>{" "}
-                  (
-                  <a href={c.licenceUrl} className="underline-offset-4 hover:text-accent hover:underline" rel="noreferrer">
-                    CC BY 4.0
-                  </a>
-                  )
-                </li>
-              ))}
-              <li>Model split, decimated and repainted for this site. Power unit built in code.</li>
-            </ul>
+        {/* Base UI portals mount on <body>, outside this stacking context, so popups sit above the app. */}
+        <div className="isolate flex flex-1 flex-col">
+          <div className="mx-auto flex w-full max-w-6xl justify-end px-6 pt-4">
+            <ThemeToggle />
           </div>
-        </footer>
+          <div className="flex-1">{children}</div>
+          <footer className="border-t border-border py-6 text-sm text-ink-tertiary">
+            <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 md:flex-row md:items-center md:justify-between">
+              <p>
+                Built by{" "}
+                <a href="https://badcodes.dev" className="text-ink-secondary underline-offset-4 hover:text-accent hover:underline">
+                  badcodes.dev
+                </a>
+              </p>
+              <ul aria-label="Credits" data-credits className="flex flex-col gap-1 md:items-end md:text-right">
+                {[credits.showroom, credits.showroom2022, credits.model, credits.partSplit].map((c) => (
+                  <li key={c.sourceUrl}>
+                    <a href={c.sourceUrl} className="underline-offset-4 hover:text-accent hover:underline" rel="noreferrer">
+                      &ldquo;{c.title}&rdquo; by {c.author}
+                    </a>{" "}
+                    (
+                    <a href={c.licenceUrl} className="underline-offset-4 hover:text-accent hover:underline" rel="noreferrer">
+                      CC BY 4.0
+                    </a>
+                    )
+                  </li>
+                ))}
+                <li>Model split, decimated and repainted for this site. Power unit built in code.</li>
+              </ul>
+            </div>
+          </footer>
+        </div>
       </body>
     </html>
   );
