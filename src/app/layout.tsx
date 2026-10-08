@@ -39,7 +39,7 @@ export default function RootLayout({
         {/* Sets data-livery (the address, then the stored choice, then Ghost) before first paint, so the accent never flashes. */}
         <script dangerouslySetInnerHTML={{ __html: liveryScript() }} />
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="isolate flex min-h-full flex-col">
         <div className="mx-auto flex w-full max-w-6xl justify-end px-6 pt-4">
           <ThemeToggle />
         </div>
