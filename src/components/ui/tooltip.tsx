@@ -3,14 +3,18 @@
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import { cn } from "@/lib/utils";
 
+// delay and timeout keep the Radix wrapper's 700ms open delay and 300ms skip window
+// (Base UI's own timeout default is 400ms).
 function TooltipProvider({
   delay = 700,
+  timeout = 300,
   ...props
 }: TooltipPrimitive.Provider.Props) {
   return (
     <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
       delay={delay}
+      timeout={timeout}
       {...props}
     />
   );

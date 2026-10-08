@@ -36,7 +36,8 @@ function ScrollBar({
       data-slot="scroll-area-scrollbar"
       orientation={orientation}
       className={cn(
-        "flex touch-none select-none transition-colors",
+        // Shown only while hovered or scrolling, like Radix's default type="hover".
+        "flex touch-none select-none opacity-0 transition-opacity data-hovering:opacity-100 data-scrolling:opacity-100",
         orientation === "vertical" &&
           "h-full w-2.5 border-l border-l-transparent p-[1px]",
         orientation === "horizontal" &&
