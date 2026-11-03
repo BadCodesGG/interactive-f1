@@ -10,7 +10,7 @@
  * or against STAGE_URL if set. Screenshots go to STAGE_SHOTS_DIR (default .stage-shots/).
  */
 
-import { chromium } from "playwright";
+import { launchChrome } from "./lib/chrome.mjs";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { createServer } from "node:net";
 import path from "node:path";
@@ -391,9 +391,9 @@ async function main() {
   const server = explicit ? null : startDevServer(port, "start");
   if (server) console.log(`next start on ${baseUrl} (pid ${server.pid})`);
   // The installed Google Chrome on purpose, with no fallback: Playwright's bundled Chromium is the build open to
-  // CVE-2026-118306 et al. A failed launch (no Chrome here) stops the server it would otherwise leave running.
-  const browser = await chromium
-    .launch({ channel: "chrome", args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] })
+  // CVE-2026-118306 et al. A failed launch (no Chrome here, or one older than the patched build) stops the
+  // server it would otherwise leave running.
+  const browser = await launchChrome({ args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] })
     .catch((error) => {
       stopDevServer(server);
       throw error;
