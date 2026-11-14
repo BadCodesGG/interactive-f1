@@ -90,6 +90,10 @@ npm run test:stage
 
 `test:stage` needs a build first and Google Chrome 156.0.8078.73 or later: it launches the installed Chrome, not Playwright's bundled Chromium, so an older `npx playwright install chromium` setup is not enough. Without Chrome, `npx playwright install chrome` installs it (it needs an administrator shell on Windows and sudo on Linux). Each launch prints the Chrome version and refuses one older than that, the first build patched for CVE-2026-118306 et al. It boots `next start`, drives each route in Chrome (the explode checks on `/`; on `/tunnel` the server-rendered controls, a rear wing change moving the lap delta), and fails on a console error, on three appearing in an initial chunk, or on a payload past its budget. Screenshots go to `STAGE_SHOTS_DIR` (default `.stage-shots/`). Point it at a server that is already running with `STAGE_URL`. Add every new feature route to `ROUTES` in `scripts/check-stage.mjs`.
 
+CI (`.github/workflows/ci.yml`) runs lint, typecheck, tests and the build on every push to `main`, not on pull requests; `check:sidecar` and `test:stage` stay local.
+
+`package.json` `overrides` clear GHSA-g3hv-75wg-m249 (minimatch >=7.0.0 <11.0.1) in dev tools: `minimatch` ^11.0.8 under `@typescript-eslint/typescript-estree` (lint) and `glob` ^14.0.6 under `@donmccurdy/caporal` (the `gltf-transform` CLI's argument parser, which pulls minimatch 11). Both parents declare an older major and only use the named `minimatch()` / promise `glob()` exports, which the new majors keep. Drop each once its parent declares a fixed range (`npm view <pkg> dependencies`), then rerun `npm audit`.
+
 ## Rebuilding the assets
 
 The built GLBs, the baked SDF and the logo textures are committed, so you do not need any of this to run or change the site. It is only for changing the models. The source models are not in the repo (they are large and are other people's work); download them from Sketchfab and pass their paths in, as an argument or an environment variable. Each script prints a usage message and exits if it is not given one.
